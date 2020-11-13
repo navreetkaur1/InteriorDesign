@@ -7,14 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InteriorDesign.Data;
 using InteriorDesign.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace InteriorDesign.Controllers
 {
-    [Authorize]
     public class CategoriesController : Controller
     {
-        
         private readonly ApplicationDbContext _context;
 
         public CategoriesController(ApplicationDbContext context)
@@ -29,7 +26,6 @@ namespace InteriorDesign.Controllers
         }
 
         // GET: Categories/Details/5
-        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

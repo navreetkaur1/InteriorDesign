@@ -9,7 +9,6 @@ namespace InteriorDesign.Models
     public class Categories
     {
         public int Id { get; set; }
-        [Required]
         
         public string Discription { get; set;} 
         
