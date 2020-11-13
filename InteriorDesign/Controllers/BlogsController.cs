@@ -22,7 +22,7 @@ namespace InteriorDesign.Controllers
         // GET: Blogs
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Blogs.Include(b => b.Categories);
+            var applicationDbContext = _context.Blogs.Include(b => b.Categories).OrderBy(p => p.name); 
             return View(await applicationDbContext.ToListAsync());
         }
 

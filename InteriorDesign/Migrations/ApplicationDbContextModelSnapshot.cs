@@ -61,6 +61,7 @@ namespace InteriorDesign.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Discription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
