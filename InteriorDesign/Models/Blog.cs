@@ -18,6 +18,7 @@ namespace InteriorDesign.Models
         public string discription { get; set; }
 
         public string image { get; set; }
+        [Display(Name = "Categories")]
         public int CategoriesId { get; set; }
         public Categories Categories { get; set; }
     }

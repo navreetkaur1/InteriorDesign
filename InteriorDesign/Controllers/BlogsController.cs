@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InteriorDesign.Data;
 using InteriorDesign.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace InteriorDesign.Controllers
 {
@@ -22,7 +24,7 @@ namespace InteriorDesign.Controllers
         // GET: Blogs
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Blogs.Include(b => b.Categories);
+            var applicationDbContext = _context.Blogs.Include(b => b.Categories).OrderBy( b=> b.name);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -57,10 +59,24 @@ namespace InteriorDesign.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,name,gender,discription,image,CategoriesId")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Id,name,gender,discription,CategoriesId")] Blog blog, IFormFile image)
         {
             if (ModelState.IsValid)
             {
+                if (image.Length > 0)
+                {
+                    var tempPath = Path.GetTempFileName();
+
+                    var uniqueName = Guid.NewGuid() + "-" + image.FileName;
+
+                    var uploadPath = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\img\\product-uploads\\" + uniqueName;
+
+                    using (var stream = new FileStream(uploadPath, FileMode.Create))
+                        await image.CopyToAsync(stream);
+
+                    blog.image = uniqueName;
+                }
+                
                 _context.Add(blog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
