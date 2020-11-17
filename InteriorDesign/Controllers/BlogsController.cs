@@ -9,9 +9,11 @@ using InteriorDesign.Data;
 using InteriorDesign.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InteriorDesign.Controllers
 {
+    [Authorize]
     public class BlogsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -29,6 +31,7 @@ namespace InteriorDesign.Controllers
         }
 
         // GET: Blogs/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -98,7 +101,7 @@ namespace InteriorDesign.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoriesId"] = new SelectList(_context.Categories, "Id", "Id", blog.CategoriesId);
+            ViewData["CategoriesId"] = new SelectList(_context.Categories.OrderBy(b=> b.Areas), "Id", "Id", blog.CategoriesId);
             return View(blog);
         }
 
@@ -107,7 +110,7 @@ namespace InteriorDesign.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,name,gender,discription,image,CategoriesId")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,name,gender,discription,CategoriesId")] Blog blog, IFormFile image, string CurrentImage)
         {
             if (id != blog.Id)
             {
@@ -118,6 +121,24 @@ namespace InteriorDesign.Controllers
             {
                 try
                 {
+                    if (image != null)
+                    {
+                        var tempPath = Path.GetTempFileName();
+
+                        var uniqueName = Guid.NewGuid() + "-" + image.FileName;
+
+                        var uploadPath = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\img\\product-uploads\\" + uniqueName;
+
+                        using (var stream = new FileStream(uploadPath, FileMode.Create))
+                            await image.CopyToAsync(stream);
+
+                        blog.image = uniqueName;
+                    }
+                    else
+                    {
+                        blog.image = CurrentImage;
+                    }
+
                     _context.Update(blog);
                     await _context.SaveChangesAsync();
                 }
