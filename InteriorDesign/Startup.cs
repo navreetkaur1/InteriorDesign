@@ -32,6 +32,13 @@ namespace InteriorDesign
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddAuthentication()
+                .AddGoogle(Options =>
+                {
+                    Options.ClientId = Configuration.GetSection("Authentication:Google")["ClientId"];
+                    Options.ClientSecret = Configuration.GetSection("Authentication:Google")["ClientSecret"];
+                });
+                
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
