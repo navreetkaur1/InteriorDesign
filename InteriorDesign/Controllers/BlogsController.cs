@@ -53,7 +53,7 @@ namespace InteriorDesign.Controllers
         // GET: Blogs/Create
         public IActionResult Create()
         {
-            ViewData["CategoriesId"] = new SelectList(_context.Categories, "Id", "Id");
+            ViewData["CategoriesId"] = new SelectList(_context.Categories, "Id", "Discription");
             return View();
         }
 
