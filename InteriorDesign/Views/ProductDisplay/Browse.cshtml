@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<InteriorDesign.Models.Categories>
 
-@{
-    ViewData["Title"] = "welcome";
+@{ 
+    ViewData["Title"] = "We are happy to have to ";
     Layout = "~/View/Shared/_Layout.cshtml";
 
 }
 <h1>Welcome to have some Ideas</h1>
 <section class="row card-group">
-    @foreach (var c in Model)
+    @foreach(var c in Model)
     {
         <div class="col-sm-6 col-lg-4 mb-3">
-            <div class="card mb-4 text-center h-100">
+            <div class= "card mb-4 text-center h-100">
                 <div class="card-dody">
                     <a asp-controller="ProductDisplay" asp-action="Browse" asp-route-id="@c.Id">@c.Areas</a>
 
@@ -19,3 +19,5 @@
         </div>
     }
 </section>
+
+

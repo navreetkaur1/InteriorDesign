@@ -20,5 +20,15 @@ namespace InteriorDesign.Controllers
             var Categories =  _context.Categories.OrderBy(b => b.Areas).ToList();
             return View(Categories);
         }
+
+        // GET: /Shop/Browse/3
+        public IActionResult Browse(int id)
+        {
+            // query the db for the products in the selected
+            var product = _context.Categories.Where(b => b.Id == id).OrderBy(b => b.Id).ToList();
+            // load the Browse view & pass the list of products for display
+            return View(product);
+
+        }
     }
 }

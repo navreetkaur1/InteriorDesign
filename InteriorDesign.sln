@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InteriorDesignTests", "InteriorDesignTests\InteriorDesignTests.csproj", "{9DFCB00D-A1BE-4A46-8B99-BC1CB30C8422}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InteriorDesignTest", "InteriorDesignTest\InteriorDesignTest.csproj", "{9E7790C1-83E3-4129-A24B-38BD609738A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{E137F42A-5052-47FB-BF56-09D22F952130}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E137F42A-5052-47FB-BF56-09D22F952130}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E137F42A-5052-47FB-BF56-09D22F952130}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DFCB00D-A1BE-4A46-8B99-BC1CB30C8422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DFCB00D-A1BE-4A46-8B99-BC1CB30C8422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DFCB00D-A1BE-4A46-8B99-BC1CB30C8422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DFCB00D-A1BE-4A46-8B99-BC1CB30C8422}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E7790C1-83E3-4129-A24B-38BD609738A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E7790C1-83E3-4129-A24B-38BD609738A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E7790C1-83E3-4129-A24B-38BD609738A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E7790C1-83E3-4129-A24B-38BD609738A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
